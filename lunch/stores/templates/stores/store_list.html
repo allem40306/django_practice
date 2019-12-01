@@ -17,7 +17,7 @@
 <div class="container">
   {% for store in stores %}
   <div class="store">
-    <h2><a href="{% url 'store_detail' pk=store.pk %}">{{ store.name }}</a></h2>
+    <h2><a href="{{ store.get_absolute_url }}">{{ store.name }}</a></h2>
     <p>{{ store.notes }}</p>
   </div>
   {% endfor %}
