@@ -16,10 +16,12 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path
-from stores.views import home
+from stores.views import home, store_list, store_detail
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
     url(r'^$', home, name='home'),
     url(r'^admin/', admin.site.urls),
+    url(r'^store/$', store_list, name='store_list'),
+    url(r'^store/(?P<pk>\d+)/$', store_detail, name='store_detail')
 ]
