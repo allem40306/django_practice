@@ -1,6 +1,8 @@
 from django.http import Http404
 from django.shortcuts import render
+from rest_framework import viewsets
 from .models import Store
+from .serializers import StoreSerializers
 
 # Create your views here.
 
@@ -14,3 +16,7 @@ def store_detail(request, pk):
     except Store.DoesNotExist:
         raise Http404
     return render(request, 'stores/store_detail.html', {'store': store})
+
+class StoreViewSet(viewsets.ModelViewSet):
+    queryset = Store.objects.all()
+    serializer_class = StoreSerializers

@@ -16,13 +16,18 @@ Including another URLconf
 from django.conf.urls import url,include
 from django.contrib import admin
 from django.urls import path
+from rest_framework.routers import DefaultRouter
 import stores.urls
-from stores.views import store_list, store_detail
+from stores.views import store_list, store_detail, StoreViewSet
 from pages.views import home
+
+router = DefaultRouter()
+router.register(r'store', StoreViewSet)
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
     url(r'^$', home, name='home'),
     url(r'^admin/', admin.site.urls),
+    url(r'^api/', include(router.urls)),
     url(r'^store/', include('stores.urls')),
 ]
